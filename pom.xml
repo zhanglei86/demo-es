@@ -70,11 +70,6 @@
         </dependency>
 
         <!-- es -->
-        <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-elasticsearch</artifactId>
-            <version>3.0.10.RELEASE</version>
-        </dependency>
 
     </dependencies>
 

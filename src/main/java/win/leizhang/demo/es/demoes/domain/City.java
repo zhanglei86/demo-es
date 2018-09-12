@@ -1,13 +1,10 @@
 package win.leizhang.demo.es.demoes.domain;
 
-import org.springframework.data.elasticsearch.annotations.Document;
-
 import java.io.Serializable;
 
 /**
  * Created by zealous on 2018/9/11.
  */
-@Document(indexName = "province", type = "city")
 public class City implements Serializable {
     /**
      * 城市编号
