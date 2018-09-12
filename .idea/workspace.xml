@@ -4,7 +4,6 @@
     <list default="true" id="7ef467fb-d39a-4dfd-85f0-c8acea86aebe" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/win/leizhang/demo/es/demoes/utils/ESUtil.java" afterPath="$PROJECT_DIR$/src/main/java/win/leizhang/demo/es/demoes/utils/ESUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/application.properties" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/win/leizhang/demo/es/demoes/test/ElasticSearchTest.java" afterPath="$PROJECT_DIR$/src/test/java/win/leizhang/demo/es/demoes/test/ElasticSearchTest.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -21,24 +20,10 @@
       <file leaf-file-name="ElasticSearchTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/win/leizhang/demo/es/demoes/test/ElasticSearchTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="246">
-              <caret line="86" column="0" lean-forward="true" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
+            <state relative-caret-position="234">
+              <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ESUtil.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/win/leizhang/demo/es/demoes/utils/ESUtil.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="354">
-              <caret line="39" column="7" lean-forward="true" selection-start-line="39" selection-start-column="7" selection-end-line="39" selection-end-column="7" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2348#2349#0" expanded="true" />
-                <element signature="e#2400#2401#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -55,8 +40,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>1.5.15.RELEASE</find>
-      <find>1.5.14.RELEASE</find>
       <find>1.5.13.RELEASE</find>
       <find>1.5.11.RELEASE</find>
       <find>1.5.12.RELEASE</find>
@@ -85,6 +68,8 @@
       <find>execute().actionGet()</find>
       <find>org.elasticsearch.client.transport.TransportClient;</find>
       <find>XContentFactory</find>
+      <find>getAdminClient</find>
+      <find>AWXMjMH8smmPiprTO6OV</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -316,7 +301,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.ElasticSearchTest.delIndex">
+  <component name="RunManager" selected="JUnit.ElasticSearchTest">
     <configuration default="false" name="ElasticSearchTest.index" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -409,6 +394,32 @@
       <option name="MAIN_CLASS_NAME" value="win.leizhang.demo.es.demoes.test.ElasticSearchTest" />
       <option name="METHOD_NAME" value="delIndex" />
       <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="ElasticSearchTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="win.leizhang.demo.es.demoes.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="demo-es" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="win.leizhang.demo.es.demoes.test" />
+      <option name="MAIN_CLASS_NAME" value="win.leizhang.demo.es.demoes.test.ElasticSearchTest" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
@@ -775,19 +786,21 @@
       <envs />
       <method />
     </configuration>
-    <list size="5">
+    <list size="6">
       <item index="0" class="java.lang.String" itemvalue="Spring Boot.DemoEsApplication" />
       <item index="1" class="java.lang.String" itemvalue="JUnit.ElasticSearchTest.index" />
       <item index="2" class="java.lang.String" itemvalue="JUnit.ElasticSearchTest.get" />
       <item index="3" class="java.lang.String" itemvalue="JUnit.BaseTestCase" />
       <item index="4" class="java.lang.String" itemvalue="JUnit.ElasticSearchTest.delIndex" />
+      <item index="5" class="java.lang.String" itemvalue="JUnit.ElasticSearchTest" />
     </list>
     <recent_temporary>
-      <list size="4">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.ElasticSearchTest.delIndex" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.ElasticSearchTest.get" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.ElasticSearchTest.index" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.BaseTestCase" />
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="JUnit.ElasticSearchTest" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.ElasticSearchTest.delIndex" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.ElasticSearchTest.get" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.ElasticSearchTest.index" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.BaseTestCase" />
       </list>
     </recent_temporary>
   </component>
@@ -804,7 +817,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1536710286595</updated>
-      <workItem from="1536710289713" duration="20214000" />
+      <workItem from="1536710289713" duration="21096000" />
     </task>
     <task id="LOCAL-00001" summary="#2.code">
       <created>1536717671981</created>
@@ -855,18 +868,28 @@
       <option name="project" value="LOCAL" />
       <updated>1536737768742</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="#9.fine">
+      <created>1536741421541</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1536741421541</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TestHistory">
+    <history-entry file="ElasticSearchTest - 2018.09.12 at 16h 49m 51s.xml">
+      <configuration name="ElasticSearchTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ElasticSearchTest - 2018.09.12 at 16h 50m 17s.xml">
+      <configuration name="ElasticSearchTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ElasticSearchTest - 2018.09.12 at 16h 51m 37s.xml">
+      <configuration name="ElasticSearchTest" configurationId="JUnit" />
+    </history-entry>
     <history-entry file="ElasticSearchTest_delIndex - 2018.09.12 at 16h 29m 29s.xml">
       <configuration name="ElasticSearchTest.delIndex" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ElasticSearchTest_get - 2018.09.12 at 15h 34m 06s.xml">
-      <configuration name="ElasticSearchTest.get" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ElasticSearchTest_get - 2018.09.12 at 15h 54m 37s.xml">
-      <configuration name="ElasticSearchTest.get" configurationId="JUnit" />
     </history-entry>
     <history-entry file="ElasticSearchTest_get - 2018.09.12 at 15h 55m 18s.xml">
       <configuration name="ElasticSearchTest.get" configurationId="JUnit" />
@@ -886,12 +909,9 @@
     <history-entry file="ElasticSearchTest_get - 2018.09.12 at 16h 27m 19s.xml">
       <configuration name="ElasticSearchTest.get" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ElasticSearchTest_index - 2018.09.12 at 15h 33m 04s.xml">
-      <configuration name="ElasticSearchTest.index" configurationId="JUnit" />
-    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20214000" />
+    <option name="totallyTimeSpent" value="21096000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="711" extended-state="6" />
@@ -944,18 +964,11 @@
     <MESSAGE value="#6.debug3" />
     <MESSAGE value="#7.debug4" />
     <MESSAGE value="#8.debug5" />
-    <option name="LAST_COMMIT_MESSAGE" value="#8.debug5" />
+    <MESSAGE value="#9.fine" />
+    <option name="LAST_COMMIT_MESSAGE" value="#9.fine" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/win/leizhang/demo/es/demoes/test/ElasticSearchTest.java</url>
-          <line>82</line>
-          <properties />
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-      </breakpoints>
       <option name="time" value="7" />
     </breakpoint-manager>
     <watches-manager />
@@ -1374,7 +1387,7 @@
         <state relative-caret-position="112">
           <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding>
-            <element signature="e#772#773#0" expanded="true" />
+            <element signature="e#772#773#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1405,20 +1418,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/win/leizhang/demo/es/demoes/utils/ESUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="39" column="7" lean-forward="true" selection-start-line="39" selection-start-column="7" selection-end-line="39" selection-end-column="7" />
+        <state relative-caret-position="255">
+          <caret line="17" column="3" lean-forward="false" selection-start-line="17" selection-start-column="3" selection-end-line="17" selection-end-column="3" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2348#2349#0" expanded="true" />
-            <element signature="e#2400#2401#0" expanded="true" />
+            <element signature="e#2150#2151#0" expanded="true" />
+            <element signature="e#2202#2203#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/win/leizhang/demo/es/demoes/test/ElasticSearchTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="86" column="0" lean-forward="true" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
+        <state relative-caret-position="234">
+          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

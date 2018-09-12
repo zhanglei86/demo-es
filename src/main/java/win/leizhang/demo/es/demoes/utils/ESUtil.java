@@ -20,9 +20,6 @@ import java.net.UnknownHostException;
  */
 @Component
 public class ESUtil {
-    //private static final String CLUSTER_NAME = "hrt-points-es";
-    //private static final String HOSTNAME = "10.0.53.68";
-    //private static final int TCP_PORT = 9300;
 
     @Value("${es.transport.sniff.enable}")
     private boolean sniffEnable;
@@ -38,14 +35,14 @@ public class ESUtil {
     private static volatile TransportClient client;
 
     /**
-     * 同步synchronized(*.class)代码块的作用和synchronized static方法作用一样,
-     * 对当前对应的*.class进行持锁,static方法和.class一样都是锁的该类本身,同一个监听器
+     * 全局客户端
      *
      * @return client
      * @throws UnknownHostException
      */
     public TransportClient getClient() {
         if (client == null) {
+            // 同步xxx代码块的作用和[synchronized static]方法作用一样, 对当前对应的*.class进行持锁, static方法和.class一样都是锁的该类本身,同一个监听器.
             synchronized (TransportClient.class) {
                 String node[] = clusterNode.split(":");
                 try {
@@ -59,19 +56,12 @@ public class ESUtil {
         return client;
     }
 
-    /**
-     * 获取索引管理的IndicesAdminClient
-     */
-    public IndicesAdminClient getAdminClient() {
+    // 获取索引管理的client对象
+    private IndicesAdminClient getAdminClient() {
         return getClient().admin().indices();
     }
 
-    /**
-     * 判定索引是否存在
-     *
-     * @param indexName
-     * @return
-     */
+    // 判定索引是否存在
     public boolean isExists(String indexName) {
         IndicesExistsResponse response = getAdminClient().prepareExists(indexName).get();
         return response.isExists() ? true : false;
@@ -80,7 +70,7 @@ public class ESUtil {
     /**
      * 创建索引
      *
-     * @param indexName
+     * @param indexName 索引名
      * @return
      */
     public boolean createIndex(String indexName) {
@@ -113,7 +103,7 @@ public class ESUtil {
     /**
      * 为索引indexName设置mapping
      *
-     * @param indexName
+     * @param indexName 索引名
      * @param typeName
      * @param mapping
      */
@@ -127,7 +117,7 @@ public class ESUtil {
     /**
      * 删除索引
      *
-     * @param indexName
+     * @param indexName 索引名
      * @return
      */
     public boolean deleteIndex(String indexName) {

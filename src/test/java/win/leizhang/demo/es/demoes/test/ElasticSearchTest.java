@@ -2,7 +2,6 @@ package win.leizhang.demo.es.demoes.test;
 
 import org.elasticsearch.action.delete.DeleteResponse;
 import org.elasticsearch.action.get.GetResponse;
-import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.index.query.QueryBuilder;
@@ -34,12 +33,10 @@ public class ElasticSearchTest extends BaseTestCase {
         infoMap.put("createTime", new Date());
         infoMap.put("count", 123);
 
-        IndexRequest request = esUtil.getClient().prepareIndex("test", "info", null).setSource(infoMap).request();
-
         IndexResponse response = esUtil.getClient()
                 .prepareIndex("test", "info", null).setSource(infoMap)
                 .execute().actionGet();
-        System.out.println("response==>" + response.toString());
+        log.info("response==>{}", response.toString());
     }
 
     @Test
@@ -47,10 +44,10 @@ public class ElasticSearchTest extends BaseTestCase {
         GetResponse response = esUtil.getClient()
                 .prepareGet("test", "city", "AWXM2Uj4smmPiprTO6O5")
                 .execute().actionGet();
-        System.out.println("response==>" + response);
+        log.info("response==>{}", response.toString());
     }
 
-    @Test
+    //@Test
     public void query() throws Exception {
         //term查询
 //        QueryBuilder queryBuilder = QueryBuilders.termQuery("age", 50) ;
@@ -78,9 +75,9 @@ public class ElasticSearchTest extends BaseTestCase {
     @Test
     public void delIndex() {
         DeleteResponse response = esUtil.getClient()
-                .prepareDelete("test", "city", "AWXMjMH8smmPiprTO6OV")
+                .prepareDelete("test", "city", "AWXMjlaAsmmPiprTO6Oa")
                 .get();
-        System.out.println("response==>" + response.toString());
+        log.info("response==>{}", response.toString());
     }
 
 }
