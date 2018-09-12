@@ -9,6 +9,8 @@ import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
 import org.elasticsearch.common.xcontent.XContentType;
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -16,6 +18,7 @@ import java.net.UnknownHostException;
 /**
  * 索引工具类
  */
+@Component
 public class ESUtil {
     //private static final String CLUSTER_NAME = "hrt-points-es";
     //private static final String HOSTNAME = "10.0.53.68";
@@ -23,8 +26,14 @@ public class ESUtil {
     private static final String CLUSTER_NAME = "elasticsearch";
     private static final String HOSTNAME = "10.0.55.27";
     private static final int TCP_PORT = 9300;
+
+    @Value("${es.cluster.name}")
+    private String clusterName;
+    @Value("${es.cluster-nodes}")
+    private String clusterNodes;
+
     //构建Settings对象
-    private static Settings settings = Settings.builder().put("cluster.name", CLUSTER_NAME).build();
+    private Settings settings = Settings.builder().put("cluster.name", clusterName).build();
     //TransportClient对象，用于连接ES集群
     //private static volatile TransportClient client;
     private static TransportClient client;
@@ -36,25 +45,27 @@ public class ESUtil {
      * @return
      * @throws UnknownHostException
      */
-    public static TransportClient getClient() {
+    public TransportClient getClient() {
         if (client == null) {
             synchronized (TransportClient.class) {
+
+                String node[] = clusterNodes.split(":");
                 try {
                     client = new PreBuiltTransportClient(settings)
-                            .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(HOSTNAME), TCP_PORT));
+                            .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(node[0]), Integer.parseInt(node[1])));
                 } catch (UnknownHostException e) {
                     e.printStackTrace();
                 }
             }
         }
-        client.connectedNodes();
+        //client.connectedNodes();
         return client;
     }
 
     /**
      * 获取索引管理的IndicesAdminClient
      */
-    public static IndicesAdminClient getAdminClient() {
+    public IndicesAdminClient getAdminClient() {
         return getClient().admin().indices();
     }
 
@@ -64,7 +75,7 @@ public class ESUtil {
      * @param indexName
      * @return
      */
-    public static boolean isExists(String indexName) {
+    public boolean isExists(String indexName) {
         IndicesExistsResponse response = getAdminClient().prepareExists(indexName).get();
         return response.isExists() ? true : false;
     }
@@ -75,7 +86,7 @@ public class ESUtil {
      * @param indexName
      * @return
      */
-    public static boolean createIndex(String indexName) {
+    public boolean createIndex(String indexName) {
         CreateIndexResponse createIndexResponse = getAdminClient()
                 .prepareCreate(indexName.toLowerCase())
                 .get();
@@ -90,7 +101,7 @@ public class ESUtil {
      * @param replicas  副本数
      * @return
      */
-    public static boolean createIndex(String indexName, int shards, int replicas) {
+    public boolean createIndex(String indexName, int shards, int replicas) {
         Settings settings = Settings.builder()
                 .put("index.number_of_shards", shards)
                 .put("index.number_of_replicas", replicas)
@@ -109,7 +120,7 @@ public class ESUtil {
      * @param typeName
      * @param mapping
      */
-    public static void setMapping(String indexName, String typeName, String mapping) {
+    public void setMapping(String indexName, String typeName, String mapping) {
         getAdminClient().preparePutMapping(indexName)
                 .setType(typeName)
                 .setSource(mapping, XContentType.JSON)
@@ -122,7 +133,7 @@ public class ESUtil {
      * @param indexName
      * @return
      */
-    public static boolean deleteIndex(String indexName) {
+    public boolean deleteIndex(String indexName) {
         DeleteIndexResponse deleteResponse = getAdminClient()
                 .prepareDelete(indexName.toLowerCase())
                 .execute()

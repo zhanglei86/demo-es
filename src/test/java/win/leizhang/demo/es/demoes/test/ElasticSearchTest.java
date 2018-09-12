@@ -11,6 +11,7 @@ import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.search.sort.SortOrder;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import win.leizhang.demo.es.demoes.utils.ESUtil;
 
 import java.util.Date;
@@ -20,9 +21,10 @@ import java.util.Map;
 /**
  * Created by zealous on 2018/9/12.
  */
-public class ElasticSearchTest {
+public class ElasticSearchTest extends BaseTestCase {
 
-    private TransportClient client = ESUtil.getClient();
+    @Autowired
+    private ESUtil esUtil;
 
     @Test
     public void index() throws Exception {
@@ -31,13 +33,13 @@ public class ElasticSearchTest {
         infoMap.put("title", "我的广告2");
         infoMap.put("createTime", new Date());
         infoMap.put("count", 123);
-        IndexResponse indexResponse = client.prepareIndex("test", "info", null).setSource(infoMap).execute().actionGet();
+        IndexResponse indexResponse = esUtil.getClient().prepareIndex("test", "info", null).setSource(infoMap).execute().actionGet();
         System.out.println("response==>" + indexResponse.toString());
     }
 
     @Test
     public void get() throws Exception {
-        GetResponse response = client.prepareGet("test", "info", "AWXMVQGVsmmPiprTO6N7")
+        GetResponse response = esUtil.getClient().prepareGet("test", "info", "AWXMsqM7smmPiprTO6Om")
                 .execute().actionGet();
         System.out.println("response==>" + response);
     }
@@ -48,7 +50,7 @@ public class ElasticSearchTest {
 //        QueryBuilder queryBuilder = QueryBuilders.termQuery("age", 50) ;
         //range查询
         QueryBuilder rangeQueryBuilder = QueryBuilders.rangeQuery("age").gt(50);
-        SearchResponse searchResponse = client.prepareSearch("sxq")
+        SearchResponse searchResponse = esUtil.getClient().prepareSearch("sxq")
                 .setTypes("user")
                 .setQuery(rangeQueryBuilder)
                 .addSort("age", SortOrder.DESC)
@@ -69,7 +71,7 @@ public class ElasticSearchTest {
 
     @Test
     public void delIndex() {
-        DeleteRequestBuilder response = client.prepareDelete("test", "city", "AWXMjMH8smmPiprTO6OV");
+        DeleteRequestBuilder response = esUtil.getClient().prepareDelete("test", "city", "AWXMjMH8smmPiprTO6OV");
         System.out.println("response==>" + response.toString());
     }
 

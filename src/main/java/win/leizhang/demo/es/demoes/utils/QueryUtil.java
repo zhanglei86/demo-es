@@ -18,7 +18,7 @@ public class QueryUtil {
     private String index = "index";
     private int size = 3;
     private SearchHits hits;
-    private TransportClient client = ESUtil.getClient();
+    private TransportClient client;
 
     public QueryUtil(String index, int size) {
         this.index = index;

@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7ef467fb-d39a-4dfd-85f0-c8acea86aebe" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/win/leizhang/demo/es/demoes/utils/ESTransportClient.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/win/leizhang/demo/es/demoes/controller/CityController.java" afterPath="$PROJECT_DIR$/src/main/java/win/leizhang/demo/es/demoes/controller/CityController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/win/leizhang/demo/es/demoes/service/CityServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/win/leizhang/demo/es/demoes/service/CityServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/win/leizhang/demo/es/demoes/utils/ESUtil.java" afterPath="$PROJECT_DIR$/src/main/java/win/leizhang/demo/es/demoes/utils/ESUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/win/leizhang/demo/es/demoes/utils/QueryUtil.java" afterPath="$PROJECT_DIR$/src/main/java/win/leizhang/demo/es/demoes/utils/QueryUtil.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/application.properties" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/win/leizhang/demo/es/demoes/test/ElasticSearchTest.java" afterPath="$PROJECT_DIR$/src/test/java/win/leizhang/demo/es/demoes/test/ElasticSearchTest.java" />
     </list>
@@ -20,66 +20,14 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="244">
-              <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ElasticSearchTest.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ElasticSearchTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/win/leizhang/demo/es/demoes/test/ElasticSearchTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="42" column="5" lean-forward="true" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
+            <state relative-caret-position="139">
+              <caret line="35" column="88" lean-forward="false" selection-start-line="35" selection-start-column="88" selection-end-line="35" selection-end-column="88" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="application.properties" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CityController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/win/leizhang/demo/es/demoes/controller/CityController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="172">
-              <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-              <folding>
-                <element signature="e#772#773#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CityServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/win/leizhang/demo/es/demoes/service/CityServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="25" column="27" lean-forward="false" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="City.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/win/leizhang/demo/es/demoes/domain/City.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="30" column="5" lean-forward="true" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -87,34 +35,13 @@
       <file leaf-file-name="ESUtil.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/win/leizhang/demo/es/demoes/utils/ESUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-110">
-              <caret line="29" column="41" lean-forward="false" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="41" />
+            <state relative-caret-position="285">
+              <caret line="20" column="10" lean-forward="false" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#2428#2429#0" expanded="true" />
+                <element signature="e#2480#2481#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DemoEsApplication.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/win/leizhang/demo/es/demoes/DemoEsApplication.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-              <folding>
-                <element signature="e#256#257#0" expanded="true" />
-                <element signature="e#315#316#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TransportClient.class" pinned="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/../../../Dev/M2/repository/org/elasticsearch/elasticsearch/5.4.0/elasticsearch-5.4.0.jar!/org/elasticsearch/client/transport/TransportClient.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="67" column="22" lean-forward="false" selection-start-line="67" selection-start-column="22" selection-end-line="67" selection-end-column="22" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -169,16 +96,16 @@
         <option value="$PROJECT_DIR$/src/main/java/win/leizhang/demo/es/demoes/service/CityService.java" />
         <option value="$PROJECT_DIR$/src/main/java/win/leizhang/demo/es/demoes/repository/CityRepository.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/src/main/java/win/leizhang/demo/es/demoes/utils/QueryUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/win/leizhang/demo/es/demoes/utils/ESTransportClient.java" />
-        <option value="$PROJECT_DIR$/src/main/java/win/leizhang/demo/es/demoes/utils/ESUtil.java" />
         <option value="$PROJECT_DIR$/src/test/java/win/leizhang/demo/es/demoes/test/BaseTestCase.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/win/leizhang/demo/es/demoes/controller/CityController.java" />
         <option value="$PROJECT_DIR$/src/main/java/win/leizhang/demo/es/demoes/domain/City.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/win/leizhang/demo/es/demoes/utils/ESUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/win/leizhang/demo/es/demoes/utils/QueryUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/win/leizhang/demo/es/demoes/service/CityServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/test/java/win/leizhang/demo/es/demoes/test/ElasticSearchTest.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
       </list>
     </option>
   </component>
@@ -853,8 +780,8 @@
     <recent_temporary>
       <list size="4">
         <item index="0" class="java.lang.String" itemvalue="JUnit.ElasticSearchTest.get" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.ElasticSearchTest.delIndex" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.ElasticSearchTest.index" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.ElasticSearchTest.index" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.ElasticSearchTest.delIndex" />
         <item index="3" class="java.lang.String" itemvalue="JUnit.BaseTestCase" />
       </list>
     </recent_temporary>
@@ -872,7 +799,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1536710286595</updated>
-      <workItem from="1536710289713" duration="16032000" />
+      <workItem from="1536710289713" duration="16901000" />
     </task>
     <task id="LOCAL-00001" summary="#2.code">
       <created>1536717671981</created>
@@ -909,13 +836,17 @@
       <option name="project" value="LOCAL" />
       <updated>1536731646261</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="#7.debug4">
+      <created>1536736896988</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1536736896988</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="ElasticSearchTest_delIndex - 2018.09.12 at 14h 57m 14s.xml">
-      <configuration name="ElasticSearchTest.delIndex" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="ElasticSearchTest_delIndex - 2018.09.12 at 14h 58m 28s.xml">
       <configuration name="ElasticSearchTest.delIndex" configurationId="JUnit" />
     </history-entry>
@@ -931,21 +862,24 @@
     <history-entry file="ElasticSearchTest_get - 2018.09.12 at 15h 15m 56s.xml">
       <configuration name="ElasticSearchTest.get" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ElasticSearchTest_index - 2018.09.12 at 13h 58m 23s.xml">
-      <configuration name="ElasticSearchTest.index" configurationId="JUnit" />
+    <history-entry file="ElasticSearchTest_get - 2018.09.12 at 15h 30m 47s.xml">
+      <configuration name="ElasticSearchTest.get" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ElasticSearchTest_index - 2018.09.12 at 13h 58m 29s.xml">
-      <configuration name="ElasticSearchTest.index" configurationId="JUnit" />
+    <history-entry file="ElasticSearchTest_get - 2018.09.12 at 15h 31m 44s.xml">
+      <configuration name="ElasticSearchTest.get" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ElasticSearchTest_index - 2018.09.12 at 14h 33m 43s.xml">
-      <configuration name="ElasticSearchTest.index" configurationId="JUnit" />
+    <history-entry file="ElasticSearchTest_get - 2018.09.12 at 15h 32m 39s.xml">
+      <configuration name="ElasticSearchTest.get" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ElasticSearchTest_index - 2018.09.12 at 14h 55m 32s.xml">
+    <history-entry file="ElasticSearchTest_get - 2018.09.12 at 15h 34m 06s.xml">
+      <configuration name="ElasticSearchTest.get" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ElasticSearchTest_index - 2018.09.12 at 15h 33m 04s.xml">
       <configuration name="ElasticSearchTest.index" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16032000" />
+    <option name="totallyTimeSpent" value="16901000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="711" extended-state="6" />
@@ -962,7 +896,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25856698" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4376947" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32866043" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -996,14 +930,15 @@
     <MESSAGE value="#4.client" />
     <MESSAGE value="#5.debug2" />
     <MESSAGE value="#6.debug3" />
-    <option name="LAST_COMMIT_MESSAGE" value="#6.debug3" />
+    <MESSAGE value="#7.debug4" />
+    <option name="LAST_COMMIT_MESSAGE" value="#7.debug4" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/win/leizhang/demo/es/demoes/test/ElasticSearchTest.java</url>
-          <line>72</line>
+          <line>74</line>
           <properties />
           <option name="timeStamp" value="4" />
         </line-breakpoint>
@@ -1266,14 +1201,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/win/leizhang/demo/es/demoes/utils/QueryUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="15" column="3" lean-forward="true" selection-start-line="15" selection-start-column="3" selection-end-line="15" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/../../../Dev/M2/repository/org/elasticsearch/elasticsearch/5.4.0/elasticsearch-5.4.0.jar!/org/elasticsearch/common/transport/TransportAddress.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -1314,18 +1241,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/../../../Dev/M2/repository/org/elasticsearch/elasticsearch/5.4.0/elasticsearch-5.4.0.jar!/org/elasticsearch/client/transport/TransportClient.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="67" column="22" lean-forward="false" selection-start-line="67" selection-start-column="22" selection-end-line="67" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/win/leizhang/demo/es/demoes/utils/ESTransportClient.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
           <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/win/leizhang/demo/es/demoes/test/BaseTestCase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="62" column="0" lean-forward="true" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../../Dev/M2/repository/org/elasticsearch/elasticsearch/5.4.0/elasticsearch-5.4.0.jar!/org/elasticsearch/client/support/AbstractClient.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="433" column="0" lean-forward="true" selection-start-line="433" selection-start-column="0" selection-end-line="433" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../../Dev/M2/repository/org/elasticsearch/elasticsearch/5.4.0/elasticsearch-5.4.0.jar!/org/elasticsearch/client/Client.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="112" column="0" lean-forward="true" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/win/leizhang/demo/es/demoes/domain/City.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="30" column="5" lean-forward="true" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
           <folding />
         </state>
       </provider>
@@ -1349,81 +1300,65 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/win/leizhang/demo/es/demoes/utils/ESUtil.java">
+    <entry file="jar://$PROJECT_DIR$/../../../Dev/M2/repository/org/elasticsearch/elasticsearch/5.4.0/elasticsearch-5.4.0.jar!/org/elasticsearch/client/transport/TransportClient.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-110">
-          <caret line="29" column="41" lean-forward="false" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/win/leizhang/demo/es/demoes/test/BaseTestCase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="62" column="0" lean-forward="true" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+        <state relative-caret-position="90">
+          <caret line="67" column="22" lean-forward="false" selection-start-line="67" selection-start-column="22" selection-end-line="67" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/../../../Dev/M2/repository/org/elasticsearch/elasticsearch/5.4.0/elasticsearch-5.4.0.jar!/org/elasticsearch/client/support/AbstractClient.class">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
-          <caret line="433" column="0" lean-forward="true" selection-start-line="433" selection-start-column="0" selection-end-line="433" selection-end-column="0" />
+          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="16" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/win/leizhang/demo/es/demoes/utils/ESUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="20" column="10" lean-forward="false" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2428#2429#0" expanded="true" />
+            <element signature="e#2480#2481#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/win/leizhang/demo/es/demoes/service/CityServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="25" column="27" lean-forward="false" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="27" />
+        <state relative-caret-position="127">
+          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/win/leizhang/demo/es/demoes/domain/City.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/win/leizhang/demo/es/demoes/utils/QueryUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="30" column="5" lean-forward="true" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
+        <state relative-caret-position="135">
+          <caret line="20" column="4" lean-forward="false" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/win/leizhang/demo/es/demoes/controller/CityController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding>
-            <element signature="e#772#773#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../../../Dev/M2/repository/org/elasticsearch/elasticsearch/5.4.0/elasticsearch-5.4.0.jar!/org/elasticsearch/client/Client.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="112" column="0" lean-forward="true" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
+        <state relative-caret-position="58">
+          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/win/leizhang/demo/es/demoes/test/ElasticSearchTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="42" column="5" lean-forward="true" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
+        <state relative-caret-position="139">
+          <caret line="35" column="88" lean-forward="false" selection-start-line="35" selection-start-column="88" selection-end-line="35" selection-end-column="88" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
