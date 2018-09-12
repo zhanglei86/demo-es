@@ -1,10 +1,10 @@
 package win.leizhang.demo.es.demoes.test;
 
-import org.elasticsearch.action.delete.DeleteRequestBuilder;
+import org.elasticsearch.action.delete.DeleteResponse;
 import org.elasticsearch.action.get.GetResponse;
+import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.search.SearchResponse;
-import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
@@ -27,19 +27,25 @@ public class ElasticSearchTest extends BaseTestCase {
     private ESUtil esUtil;
 
     @Test
-    public void index() throws Exception {
+    public void save() throws Exception {
         Map<String, Object> infoMap = new HashMap<>();
         infoMap.put("name", "广告信息1");
         infoMap.put("title", "我的广告2");
         infoMap.put("createTime", new Date());
         infoMap.put("count", 123);
-        IndexResponse indexResponse = esUtil.getClient().prepareIndex("test", "info", null).setSource(infoMap).execute().actionGet();
-        System.out.println("response==>" + indexResponse.toString());
+
+        IndexRequest request = esUtil.getClient().prepareIndex("test", "info", null).setSource(infoMap).request();
+
+        IndexResponse response = esUtil.getClient()
+                .prepareIndex("test", "info", null).setSource(infoMap)
+                .execute().actionGet();
+        System.out.println("response==>" + response.toString());
     }
 
     @Test
     public void get() throws Exception {
-        GetResponse response = esUtil.getClient().prepareGet("test", "info", "AWXMsqM7smmPiprTO6Om")
+        GetResponse response = esUtil.getClient()
+                .prepareGet("test", "city", "AWXM2Uj4smmPiprTO6O5")
                 .execute().actionGet();
         System.out.println("response==>" + response);
     }
@@ -71,7 +77,9 @@ public class ElasticSearchTest extends BaseTestCase {
 
     @Test
     public void delIndex() {
-        DeleteRequestBuilder response = esUtil.getClient().prepareDelete("test", "city", "AWXMjMH8smmPiprTO6OV");
+        DeleteResponse response = esUtil.getClient()
+                .prepareDelete("test", "city", "AWXMjMH8smmPiprTO6OV")
+                .get();
         System.out.println("response==>" + response.toString());
     }
 

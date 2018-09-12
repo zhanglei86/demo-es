@@ -22,43 +22,40 @@ import java.net.UnknownHostException;
 public class ESUtil {
     //private static final String CLUSTER_NAME = "hrt-points-es";
     //private static final String HOSTNAME = "10.0.53.68";
+    //private static final int TCP_PORT = 9300;
 
-    private static final String CLUSTER_NAME = "elasticsearch";
-    private static final String HOSTNAME = "10.0.55.27";
-    private static final int TCP_PORT = 9300;
-
+    @Value("${es.transport.sniff.enable}")
+    private boolean sniffEnable;
     @Value("${es.cluster.name}")
-    private String clusterName;
-    @Value("${es.cluster-nodes}")
-    private String clusterNodes;
+    private String clusterName;//集群名称
+    @Value("${es.cluster-node}")
+    private String clusterNode;//集群主机的master节点
 
-    //构建Settings对象
-    private Settings settings = Settings.builder().put("cluster.name", clusterName).build();
-    //TransportClient对象，用于连接ES集群
-    //private static volatile TransportClient client;
-    private static TransportClient client;
+    private Settings sts = Settings.builder()
+            .put("client.transport.sniff", sniffEnable)
+            .put("cluster.name", clusterName)
+            .build();
+    private static volatile TransportClient client;
 
     /**
      * 同步synchronized(*.class)代码块的作用和synchronized static方法作用一样,
      * 对当前对应的*.class进行持锁,static方法和.class一样都是锁的该类本身,同一个监听器
      *
-     * @return
+     * @return client
      * @throws UnknownHostException
      */
     public TransportClient getClient() {
         if (client == null) {
             synchronized (TransportClient.class) {
-
-                String node[] = clusterNodes.split(":");
+                String node[] = clusterNode.split(":");
                 try {
-                    client = new PreBuiltTransportClient(settings)
+                    client = new PreBuiltTransportClient(sts)
                             .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(node[0]), Integer.parseInt(node[1])));
                 } catch (UnknownHostException e) {
                     e.printStackTrace();
                 }
             }
         }
-        //client.connectedNodes();
         return client;
     }
 
