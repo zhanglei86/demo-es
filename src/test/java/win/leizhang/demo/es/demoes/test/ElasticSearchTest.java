@@ -35,7 +35,7 @@ public class ElasticSearchTest extends BaseTestCase {
 
         IndexResponse response = esUtil.getClient()
                 .prepareIndex("test", "info", null).setSource(infoMap)
-                .execute().actionGet();
+                .get();
         log.info("response==>{}", response.toString());
     }
 
@@ -43,12 +43,30 @@ public class ElasticSearchTest extends BaseTestCase {
     public void get() throws Exception {
         GetResponse response = esUtil.getClient()
                 .prepareGet("test", "city", "AWXM2Uj4smmPiprTO6O5")
-                .execute().actionGet();
+                .get();
+        log.info("response==>{}", response.toString());
+    }
+
+    @Test
+    public void query1() throws Exception {
+        QueryBuilder qb1 = QueryBuilders.matchAllQuery();
+        QueryBuilder qb2 = QueryBuilders.termQuery("id", 6);
+        QueryBuilder qb3 = QueryBuilders.termsQuery("id", 6, 7, 8, 9);
+        QueryBuilder qb4 = QueryBuilders.rangeQuery("score").gte(97);
+        QueryBuilder qb5 = QueryBuilders.rangeQuery("createdTime").from("2017-01-01").to("2017-12-31").format("yyyy-MM-dd");
+        QueryBuilder qb6 = QueryBuilders.prefixQuery("name", "深");
+
+        SearchResponse response = esUtil.getClient().prepareSearch("test")
+                .setTypes("city")
+                .setQuery(qb3)
+                .addSort("id", SortOrder.DESC)//排序
+                .setSize(3)//一次查询文档数
+                .get();
         log.info("response==>{}", response.toString());
     }
 
     //@Test
-    public void query() throws Exception {
+    public void q() throws Exception {
         //term查询
 //        QueryBuilder queryBuilder = QueryBuilders.termQuery("age", 50) ;
         //range查询
@@ -58,8 +76,7 @@ public class ElasticSearchTest extends BaseTestCase {
                 .setQuery(rangeQueryBuilder)
                 .addSort("age", SortOrder.DESC)
                 .setSize(20)
-                .execute()
-                .actionGet();
+                .get();
         SearchHits hits = searchResponse.getHits();
         System.out.println("查到记录数：" + hits.getTotalHits());
         SearchHit[] searchHists = hits.getHits();
