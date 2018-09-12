@@ -4,45 +4,40 @@ import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.transport.TransportClient;
-import org.elasticsearch.common.settings.Settings;
-import org.elasticsearch.common.transport.InetSocketTransportAddress;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.search.sort.SortOrder;
-import org.elasticsearch.transport.client.PreBuiltTransportClient;
-import org.junit.Before;
 import org.junit.Test;
+import win.leizhang.demo.es.demoes.utils.ESUtil;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ExecutionException;
 
 /**
  * Created by zealous on 2018/9/12.
  */
 public class ElasticSearchTest {
 
-    TransportClient client;
+    //TransportClient client;
+    TransportClient client = ESUtil.getClient();
 
     @Test
     public void index() throws Exception {
         Map<String, Object> infoMap = new HashMap<>();
-        infoMap.put("name", "广告信息11");
-        infoMap.put("title", "我的广告22");
+        infoMap.put("name", "广告信息1");
+        infoMap.put("title", "我的广告2");
         infoMap.put("createTime", new Date());
-        infoMap.put("count", 1022);
-        IndexResponse indexResponse = client.prepareIndex("test", "info", "100").setSource(infoMap).execute().actionGet();
+        infoMap.put("count", 123);
+        IndexResponse indexResponse = client.prepareIndex("test", "info", null).setSource(infoMap).execute().actionGet();
         System.out.println("id:" + indexResponse.getId());
     }
 
     @Test
     public void get() throws Exception {
-        GetResponse response = client.prepareGet("sxq", "user", "2")
+        GetResponse response = client.prepareGet("test", "info", "AWXMVQGVsmmPiprTO6N7")
                 .execute().actionGet();
         System.out.println("response.getId():" + response.getId());
         System.out.println("response.getSourceAsString():" + response.getSourceAsString());

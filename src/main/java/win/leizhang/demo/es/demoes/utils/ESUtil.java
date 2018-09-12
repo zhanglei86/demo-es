@@ -17,11 +17,11 @@ import java.net.UnknownHostException;
  * 索引工具类
  */
 public class ESUtil {
-    //集群名,默认值elasticsearch
-    private static final String CLUSTER_NAME = "hrt-points-es";
-    //ES集群中某个节点
-    private static final String HOSTNAME = "10.0.53.68";
-    //连接端口号
+    //private static final String CLUSTER_NAME = "hrt-points-es";
+    //private static final String HOSTNAME = "10.0.53.68";
+
+    private static final String CLUSTER_NAME = "elasticsearch";
+    private static final String HOSTNAME = "10.0.55.27";
     private static final int TCP_PORT = 9300;
     //构建Settings对象
     private static Settings settings = Settings.builder().put("cluster.name", CLUSTER_NAME).build();
@@ -40,7 +40,7 @@ public class ESUtil {
         if (client == null) {
             synchronized (TransportClient.class) {
                 try {
-                    client = new PreBuiltTransportClient(Settings.EMPTY)
+                    client = new PreBuiltTransportClient(settings)
                             .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(HOSTNAME), TCP_PORT));
                 } catch (UnknownHostException e) {
                     e.printStackTrace();
