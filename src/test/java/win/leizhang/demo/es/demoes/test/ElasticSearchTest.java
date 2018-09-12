@@ -1,5 +1,6 @@
 package win.leizhang.demo.es.demoes.test;
 
+import org.elasticsearch.action.delete.DeleteRequestBuilder;
 import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.search.SearchResponse;
@@ -21,8 +22,7 @@ import java.util.Map;
  */
 public class ElasticSearchTest {
 
-    //TransportClient client;
-    TransportClient client = ESUtil.getClient();
+    private TransportClient client = ESUtil.getClient();
 
     @Test
     public void index() throws Exception {
@@ -32,15 +32,14 @@ public class ElasticSearchTest {
         infoMap.put("createTime", new Date());
         infoMap.put("count", 123);
         IndexResponse indexResponse = client.prepareIndex("test", "info", null).setSource(infoMap).execute().actionGet();
-        System.out.println("id:" + indexResponse.getId());
+        System.out.println("response==>" + indexResponse.toString());
     }
 
     @Test
     public void get() throws Exception {
         GetResponse response = client.prepareGet("test", "info", "AWXMVQGVsmmPiprTO6N7")
                 .execute().actionGet();
-        System.out.println("response.getId():" + response.getId());
-        System.out.println("response.getSourceAsString():" + response.getSourceAsString());
+        System.out.println("response==>" + response);
     }
 
     @Test
@@ -66,6 +65,12 @@ public class ElasticSearchTest {
                 System.out.format("name:%s ,age :%d \n", name, age);
             }
         }
+    }
+
+    @Test
+    public void delIndex() {
+        DeleteRequestBuilder response = client.prepareDelete("test", "city", "AWXMjMH8smmPiprTO6OV");
+        System.out.println("response==>" + response.toString());
     }
 
 }
