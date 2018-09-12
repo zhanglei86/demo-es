@@ -9,8 +9,10 @@ import java.util.List;
  */
 public interface CityService {
 
+    // 新增城市信息
     Long saveCity(City city);
 
-    List<City> findByDescriptionAndScore(String description, Integer score);
+    // 根据关键词，function score query 权重分分页查询
+    List<City> searchCity(Integer pageNumber, Integer pageSize, String searchContent);
 
 }
