@@ -11,7 +11,7 @@ import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.search.sort.SortOrder;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import win.leizhang.demo.es.demoes.utils.ESUtil;
+import win.leizhang.demo.es.demoes.utils.EsInitUtil;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -23,7 +23,7 @@ import java.util.Map;
 public class ElasticSearchTest extends BaseTestCase {
 
     @Autowired
-    private ESUtil esUtil;
+    private EsInitUtil esUtil;
 
     @Test
     public void save() throws Exception {

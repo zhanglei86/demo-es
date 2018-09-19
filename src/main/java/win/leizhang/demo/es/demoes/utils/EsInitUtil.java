@@ -16,10 +16,10 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 /**
- * 索引工具类
+ * es初始化工具类
  */
 @Component
-public class ESUtil {
+public class EsInitUtil {
 
     @Value("${es.transport.sniff.enable}")
     private boolean sniffEnable;
