@@ -5,21 +5,27 @@ import org.elasticsearch.action.admin.indices.delete.DeleteIndexResponse;
 import org.elasticsearch.action.admin.indices.exists.indices.IndicesExistsResponse;
 import org.elasticsearch.client.IndicesAdminClient;
 import org.elasticsearch.client.transport.TransportClient;
+import org.elasticsearch.cluster.node.DiscoveryNode;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
 import org.elasticsearch.common.xcontent.XContentType;
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.List;
 
 /**
  * es初始化工具类
  */
 @Component
 public class EsInitUtil {
+
+    private final static Logger log = LoggerFactory.getLogger(EsInitUtil.class);
 
     @Value("${es.transport.sniff.enable}")
     private boolean sniffEnable;
@@ -49,11 +55,21 @@ public class EsInitUtil {
                     client = new PreBuiltTransportClient(sts)
                             .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(node[0]), Integer.parseInt(node[1])));
                 } catch (UnknownHostException e) {
+                    log.error("[es初始化] 无效的主机异常！配置信息==>{}, 节点==>{}", sts.toString(), clusterName);
                     e.printStackTrace();
                 }
             }
+            clusterInfo();
         }
         return client;
+    }
+
+    // 查看集群信息
+    private void clusterInfo() {
+        List<DiscoveryNode> nodes = client.connectedNodes();
+        for (DiscoveryNode node : nodes) {
+            log.info("[es集群信息] hostId={}, hostName={}, address={}", node.getHostAddress(), node.getHostName(), node.getAddress());
+        }
     }
 
     // 获取索引管理的client对象
