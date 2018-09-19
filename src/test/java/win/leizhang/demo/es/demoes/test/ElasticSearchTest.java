@@ -4,6 +4,7 @@ import org.elasticsearch.action.delete.DeleteResponse;
 import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.search.SearchResponse;
+import org.elasticsearch.action.support.WriteRequest;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
@@ -93,6 +94,7 @@ public class ElasticSearchTest extends BaseTestCase {
     public void delIndex() {
         DeleteResponse response = esUtil.getClient()
                 .prepareDelete("test", "city", "AWXMjlaAsmmPiprTO6Oa")
+                .setRefreshPolicy(WriteRequest.RefreshPolicy.IMMEDIATE)// 刷新
                 .get();
         log.info("response==>{}", response.toString());
     }
