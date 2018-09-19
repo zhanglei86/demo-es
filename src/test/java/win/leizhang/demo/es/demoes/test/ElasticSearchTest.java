@@ -51,14 +51,14 @@ public class ElasticSearchTest extends BaseTestCase {
     public void query1() throws Exception {
         QueryBuilder qb1 = QueryBuilders.matchAllQuery();
         QueryBuilder qb2 = QueryBuilders.termQuery("id", 6);
-        QueryBuilder qb3 = QueryBuilders.termsQuery("id", 6, 7, 8, 9);
+        //QueryBuilder qb3 = QueryBuilders.termsQuery("id", 6, 7, 8, 9);
         QueryBuilder qb4 = QueryBuilders.rangeQuery("score").gte(97);
         QueryBuilder qb5 = QueryBuilders.rangeQuery("createdTime").from("2017-01-01").to("2017-12-31").format("yyyy-MM-dd");
         QueryBuilder qb6 = QueryBuilders.prefixQuery("name", "深");
 
         SearchResponse response = esUtil.getClient().prepareSearch("test")
                 .setTypes("city")
-                .setQuery(qb3)
+                .setQuery(qb2)
                 .addSort("id", SortOrder.DESC)//排序
                 .setSize(3)//一次查询文档数
                 .get();
