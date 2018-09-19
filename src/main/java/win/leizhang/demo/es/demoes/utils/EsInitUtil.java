@@ -1,5 +1,6 @@
 package win.leizhang.demo.es.demoes.utils;
 
+import org.elasticsearch.action.admin.cluster.state.ClusterStateResponse;
 import org.elasticsearch.action.admin.indices.create.CreateIndexResponse;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexResponse;
 import org.elasticsearch.action.admin.indices.exists.indices.IndicesExistsResponse;
@@ -55,11 +56,13 @@ public class EsInitUtil {
                     client = new PreBuiltTransportClient(sts)
                             .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(node[0]), Integer.parseInt(node[1])));
                 } catch (UnknownHostException e) {
+                    client = null;
                     log.error("[es初始化] 无效的主机异常！配置信息==>{}, 节点==>{}", sts.toString(), clusterName);
                     e.printStackTrace();
                 }
             }
             clusterInfo();
+            allIndex();
         }
         return client;
     }
@@ -77,21 +80,35 @@ public class EsInitUtil {
         return getClient().admin().indices();
     }
 
+    // 获取所有索引
+    private void allIndex() {
+        ClusterStateResponse response = getClient().admin()
+                .cluster()
+                .prepareState()
+                .get();
+
+        // 所有
+        String[] ids = response.getState().getMetaData().getConcreteAllIndices();
+        log.info("[es集群信息] index总数={}", ids.length);
+        for (String index : ids) {
+            log.info("[es集群信息] 获取的index={}", index);
+        }
+    }
+
     // 判定索引是否存在
-    public boolean isExists(String indexName) {
-        IndicesExistsResponse response = getAdminClient().prepareExists(indexName).get();
+    public boolean isExists(String index) {
+        IndicesExistsResponse response = getAdminClient().prepareExists(index).get();
         return response.isExists() ? true : false;
     }
 
     /**
      * 创建索引
      *
-     * @param indexName 索引名
-     * @return
+     * @param index 索引名
      */
-    public boolean createIndex(String indexName) {
+    public boolean createIndex(String index) {
         CreateIndexResponse createIndexResponse = getAdminClient()
-                .prepareCreate(indexName.toLowerCase())
+                .prepareCreate(index.toLowerCase())
                 .get();
         return createIndexResponse.isAcknowledged() ? true : false;
     }
@@ -102,7 +119,6 @@ public class EsInitUtil {
      * @param indexName 索引名
      * @param shards    分片数
      * @param replicas  副本数
-     * @return
      */
     public boolean createIndex(String indexName, int shards, int replicas) {
         Settings settings = Settings.builder()
@@ -133,14 +149,12 @@ public class EsInitUtil {
     /**
      * 删除索引
      *
-     * @param indexName 索引名
-     * @return
+     * @param index 索引名
      */
-    public boolean deleteIndex(String indexName) {
+    public boolean deleteIndex(String index) {
         DeleteIndexResponse deleteResponse = getAdminClient()
-                .prepareDelete(indexName.toLowerCase())
-                .execute()
-                .actionGet();
+                .prepareDelete(index.toLowerCase())
+                .get();
         return deleteResponse.isAcknowledged() ? true : false;
     }
 }
