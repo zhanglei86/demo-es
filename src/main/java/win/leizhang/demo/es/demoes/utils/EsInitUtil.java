@@ -1,5 +1,6 @@
 package win.leizhang.demo.es.demoes.utils;
 
+import org.apache.commons.lang3.StringUtils;
 import org.elasticsearch.action.admin.cluster.state.ClusterStateResponse;
 import org.elasticsearch.action.admin.indices.create.CreateIndexResponse;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexResponse;
@@ -44,8 +45,8 @@ public class EsInitUtil {
     /**
      * 全局客户端
      *
-     * @return client
-     * @throws UnknownHostException
+     * @return client 连接池
+     * @throws UnknownHostException 异常
      */
     public TransportClient getClient() {
         if (client == null) {
@@ -68,7 +69,7 @@ public class EsInitUtil {
     }
 
     // 查看集群信息
-    private void clusterInfo() {
+    void clusterInfo() {
         List<DiscoveryNode> nodes = client.connectedNodes();
         for (DiscoveryNode node : nodes) {
             log.info("[es集群信息] hostId={}, hostName={}, address={}", node.getHostAddress(), node.getHostName(), node.getAddress());
@@ -76,12 +77,12 @@ public class EsInitUtil {
     }
 
     // 获取索引管理的client对象
-    private IndicesAdminClient getAdminClient() {
+    IndicesAdminClient getAdminClient() {
         return getClient().admin().indices();
     }
 
     // 获取所有索引
-    private void allIndex() {
+    void allIndex() {
         ClusterStateResponse response = getClient().admin()
                 .cluster()
                 .prepareState()
@@ -92,6 +93,30 @@ public class EsInitUtil {
         log.info("[es集群信息] index总数={}", ids.length);
         for (String index : ids) {
             log.info("[es集群信息] 获取的index={}", index);
+        }
+    }
+
+    /**
+     * 参数校验
+     *
+     * @param index 数据库
+     * @param type  表
+     * @param pk    主键
+     */
+    void validParam(String index, String type, String pk) {
+        validParam(index, type);
+        if (StringUtils.isBlank(pk)) {
+            throw new InternalError("入参primaryKey不能为空 ");
+        }
+    }
+
+    // 参数校验2
+    void validParam(String index, String type) {
+        if (StringUtils.isBlank(index)) {
+            throw new InternalError("入参index不能为空 ");
+        }
+        if (StringUtils.isBlank(type)) {
+            throw new InternalError("入参type不能为空 ");
         }
     }
 

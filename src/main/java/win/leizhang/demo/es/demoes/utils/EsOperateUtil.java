@@ -1,7 +1,6 @@
 package win.leizhang.demo.es.demoes.utils;
 
 import com.alibaba.fastjson.JSON;
-import org.apache.commons.lang3.StringUtils;
 import org.elasticsearch.action.bulk.BulkRequestBuilder;
 import org.elasticsearch.action.bulk.BulkResponse;
 import org.elasticsearch.action.delete.DeleteRequestBuilder;
@@ -12,16 +11,12 @@ import org.elasticsearch.action.support.WriteRequest;
 import org.elasticsearch.action.update.UpdateRequest;
 import org.elasticsearch.action.update.UpdateResponse;
 import org.elasticsearch.common.unit.TimeValue;
-import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
-import org.elasticsearch.search.SearchHits;
-import org.elasticsearch.search.sort.SortOrder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import win.leizhang.demo.es.demoes.service.CityServiceImpl;
 
 import java.util.List;
 import java.util.Map;
@@ -34,7 +29,7 @@ import java.util.concurrent.ExecutionException;
 @Component
 public class EsOperateUtil {
 
-    private static final Logger log = LoggerFactory.getLogger(CityServiceImpl.class);
+    private static final Logger log = LoggerFactory.getLogger(EsOperateUtil.class);
 
     @Autowired
     private EsInitUtil esUtil;
@@ -49,7 +44,7 @@ public class EsOperateUtil {
      */
     public void add(String index, String type, String pk, Object obj) {
         // 校验
-        validParam(index, type);
+        esUtil.validParam(index, type);
 
         // 对象和提交
         Map<String, Object> map = JSON.parseObject(JSON.toJSONString(obj));
@@ -68,7 +63,7 @@ public class EsOperateUtil {
      */
     public void addBatch(String index, String type, String pk, List<Object> list) {
         // 校验
-        validParam(index, type);
+        esUtil.validParam(index, type);
 
         // 批量的
         BulkRequestBuilder bulkRequest = esUtil.getClient().prepareBulk()
@@ -94,7 +89,7 @@ public class EsOperateUtil {
      */
     public void deleteIndexType(String index, String type) {
         // 校验
-        validParam(index, type);
+        esUtil.validParam(index, type);
 
         // 批量的
         BulkRequestBuilder bulkRequest = esUtil.getClient().prepareBulk();
@@ -144,7 +139,7 @@ public class EsOperateUtil {
      */
     public void update(String index, String type, String pk, Object obj) throws InterruptedException, ExecutionException {
         // 校验
-        validParam(index, type, pk);
+        esUtil.validParam(index, type, pk);
 
         // 对象
         Map<String, Object> map = JSON.parseObject(JSON.toJSONString(obj));
@@ -152,45 +147,6 @@ public class EsOperateUtil {
         // 提交
         UpdateResponse response = esUtil.getClient().update(request).get();
         log.debug("update, result==>{}", response.toString());
-    }
-
-    /**
-     * 查询
-     *
-     * @param index 数据库
-     * @param type  表
-     * @param qb    查询对象
-     */
-    public SearchHits query(String index, String type, QueryBuilder qb) {
-        // 校验
-        validParam(index, type);
-
-        SearchResponse response = esUtil.getClient().prepareSearch(index)
-                .setTypes(type)
-                .setQuery(qb)
-                .addSort("createdTime", SortOrder.DESC)
-                .get();
-        log.debug("response==>{}", response.toString());
-
-        return response.getHits();
-    }
-
-    // 参数校验1
-    private void validParam(String index, String type, String pk) {
-        validParam(index, type);
-        if (StringUtils.isBlank(pk)) {
-            throw new InternalError("入参primaryKey不能为空 ");
-        }
-    }
-
-    // 参数校验2
-    private void validParam(String index, String type) {
-        if (StringUtils.isBlank(index)) {
-            throw new InternalError("入参index不能为空 ");
-        }
-        if (StringUtils.isBlank(type)) {
-            throw new InternalError("入参indexType不能为空 ");
-        }
     }
 
 }
