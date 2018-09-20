@@ -9,6 +9,8 @@ import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.action.search.SearchType;
 import org.elasticsearch.action.support.WriteRequest;
+import org.elasticsearch.action.update.UpdateRequest;
+import org.elasticsearch.action.update.UpdateResponse;
 import org.elasticsearch.common.unit.TimeValue;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
@@ -23,6 +25,7 @@ import win.leizhang.demo.es.demoes.service.CityServiceImpl;
 
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 /**
  * es操作工具类
@@ -84,33 +87,12 @@ public class EsOperateUtil {
     }
 
     /**
-     * 查询
-     *
-     * @param index 数据库
-     * @param type  表
-     * @param qb    查询对象
-     */
-    public SearchHits query(String index, String type, QueryBuilder qb) {
-        // 校验
-        validParam(index, type);
-
-        SearchResponse response = esUtil.getClient().prepareSearch(index)
-                .setTypes(type)
-                .setQuery(qb)
-                .addSort("createdTime", SortOrder.DESC)
-                .get();
-        log.debug("response==>{}", response.toString());
-
-        return response.getHits();
-    }
-
-    /**
      * 批量删除
      *
      * @param index 数据库
      * @param type  表
      */
-    public void deleteIndexTypeAllData(String index, String type) {
+    public void deleteIndexType(String index, String type) {
         // 校验
         validParam(index, type);
 
@@ -148,6 +130,49 @@ public class EsOperateUtil {
                     .setScroll(new TimeValue(60000))
                     .get();
         }
+    }
+
+    /**
+     * 更新
+     *
+     * @param index 数据库
+     * @param type  表
+     * @param pk    主键
+     * @param obj   对象
+     * @throws InterruptedException
+     * @throws ExecutionException
+     */
+    public void update(String index, String type, String pk, Object obj) throws InterruptedException, ExecutionException {
+        // 校验
+        validParam(index, type, pk);
+
+        // 对象
+        Map<String, Object> map = JSON.parseObject(JSON.toJSONString(obj));
+        UpdateRequest request = new UpdateRequest(index, type, pk).doc(map);
+        // 提交
+        UpdateResponse response = esUtil.getClient().update(request).get();
+        log.debug("update, result==>{}", response.toString());
+    }
+
+    /**
+     * 查询
+     *
+     * @param index 数据库
+     * @param type  表
+     * @param qb    查询对象
+     */
+    public SearchHits query(String index, String type, QueryBuilder qb) {
+        // 校验
+        validParam(index, type);
+
+        SearchResponse response = esUtil.getClient().prepareSearch(index)
+                .setTypes(type)
+                .setQuery(qb)
+                .addSort("createdTime", SortOrder.DESC)
+                .get();
+        log.debug("response==>{}", response.toString());
+
+        return response.getHits();
     }
 
     // 参数校验1

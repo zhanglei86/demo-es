@@ -95,7 +95,11 @@ public class EsInitUtil {
         }
     }
 
-    // 判定索引是否存在
+    /**
+     * 判定索引是否存在
+     *
+     * @param index 索引名
+     */
     public boolean isExists(String index) {
         IndicesExistsResponse response = getAdminClient().prepareExists(index).get();
         return response.isExists() ? true : false;
