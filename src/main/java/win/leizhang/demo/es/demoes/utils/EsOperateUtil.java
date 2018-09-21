@@ -61,7 +61,7 @@ public class EsOperateUtil {
      * @param pk    主键
      * @param list  链表
      */
-    public void addBatch(String index, String type, String pk, List<Object> list) {
+    public void addBatch(String index, String type, String pk, List<Map<String, Object>> list) {
         // 校验
         esUtil.validParam(index, type);
 

@@ -23,6 +23,7 @@ import java.util.List;
 
 /**
  * es初始化工具类
+ * Created by zealous on 2018/9/14.
  */
 @Component
 public class EsInitUtil {
@@ -57,10 +58,13 @@ public class EsInitUtil {
                     client = new PreBuiltTransportClient(sts)
                             .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(node[0]), Integer.parseInt(node[1])));
                 } catch (UnknownHostException e) {
-                    client = null;
                     log.error("[es初始化] 无效的主机异常！配置信息==>{}, 节点==>{}", sts.toString(), clusterName);
                     e.printStackTrace();
+                } catch (Exception e) {
+                    log.error("[es初始化] 其他异常！");
+                    e.printStackTrace();
                 }
+                log.info("[es初始化] 完成");
             }
             clusterInfo();
             allIndex();
