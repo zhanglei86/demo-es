@@ -10,6 +10,7 @@ import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.cluster.node.DiscoveryNode;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
+import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentType;
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
 import org.slf4j.Logger;
@@ -30,16 +31,19 @@ public class EsInitUtil {
 
     private final static Logger log = LoggerFactory.getLogger(EsInitUtil.class);
 
-    @Value("${es.transport.sniff.enable}")
+    @Value("${es.transport.sniff.enable:false}")
     private boolean sniffEnable;
-    @Value("${es.cluster.name}")
+    @Value("${es.cluster.name:}")
     private String clusterName;//集群名称
-    @Value("${es.cluster-node}")
+    @Value("${es.cluster-node:127.0.0.1:9300}")
     private String clusterNode;//集群主机的master节点
 
     private Settings sts = Settings.builder()
-            .put("client.transport.sniff", sniffEnable)
-            .put("cluster.name", clusterName)
+            //.put("client.transport.sniff", sniffEnable)
+            //.put("cluster.name", clusterName)
+            .put("client.transport.ignore_cluster_name", true)
+            //.put("client.transport.ping_timeout", true)
+            //.put("client.transport.nodes_sampler_interval", true)
             .build();
     private static volatile TransportClient client;
 
@@ -53,10 +57,16 @@ public class EsInitUtil {
         if (client == null) {
             // 同步xxx代码块的作用和[synchronized static]方法作用一样, 对当前对应的*.class进行持锁, static方法和.class一样都是锁的该类本身,同一个监听器.
             synchronized (TransportClient.class) {
-                String node[] = clusterNode.split(":");
+                String nodes[] = clusterNode.split(",");
+                String node[];
                 try {
-                    client = new PreBuiltTransportClient(sts)
-                            .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(node[0]), Integer.parseInt(node[1])));
+                    client = new PreBuiltTransportClient(sts);
+                    for (String nd : nodes) {
+                        node = nd.split(":");
+                        client.addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(node[0]), Integer.parseInt(node[1])));
+                    }
+                    // 貌似没卵用
+                    //client.connectedNodes();
                 } catch (UnknownHostException e) {
                     log.error("[es初始化] 无效的主机异常！配置信息==>{}, 节点==>{}", sts.toString(), clusterName);
                     e.printStackTrace();
@@ -176,6 +186,13 @@ public class EsInitUtil {
         getAdminClient().preparePutMapping(indexName)
                 .setType(typeName)
                 .setSource(mapping, XContentType.JSON)
+                .get();
+    }
+
+    public void setMapping2(String indexName, String typeName, XContentBuilder mapping) {
+        getAdminClient().preparePutMapping(indexName)
+                .setType(typeName)
+                .setSource(mapping)
                 .get();
     }
 

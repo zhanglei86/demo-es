@@ -98,7 +98,7 @@ public class EsOperateUtil {
                 .setQuery(QueryBuilders.matchAllQuery())
                 .setSearchType(SearchType.DFS_QUERY_THEN_FETCH)
                 .setScroll(new TimeValue(60000))
-                .setSize(10000)
+                .setSize(100)
                 .setExplain(false)
                 .get();
 

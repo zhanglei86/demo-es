@@ -1,8 +1,10 @@
 package win.leizhang.demo.es.demoes.utils;
 
+import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
+import org.elasticsearch.common.unit.TimeValue;
 import org.elasticsearch.index.query.QueryBuilder;
-import org.elasticsearch.search.SearchHits;
+import org.elasticsearch.search.aggregations.AggregationBuilder;
 import org.elasticsearch.search.sort.SortOrder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,24 +24,74 @@ public class EsQueryUtil {
     private EsInitUtil esUtil;
 
     /**
-     * 查询
+     * 分页查询
      *
-     * @param index 数据库
-     * @param type  表
-     * @param qb    查询对象
+     * @param index     数据库
+     * @param type      表
+     * @param qb        查询对象
+     * @param pageStart 从第几页开始
+     * @param pageSize  每页数量
+     * @return
      */
-    public SearchHits query(String index, String type, QueryBuilder qb) {
+    public SearchResponse query(String index, String type, QueryBuilder qb, int pageStart, int pageSize) {
         // 校验
         esUtil.validParam(index, type);
+        // 不能大于1万
+        pageSize = (pageSize > 10000) ? 10 : pageSize;
 
         SearchResponse response = esUtil.getClient().prepareSearch(index)
                 .setTypes(type)
                 .setQuery(qb)
                 .addSort("createdTime", SortOrder.DESC)
+                .setFrom(pageStart)
+                .setScroll(TimeValue.timeValueMinutes(2))
+                .setSize(pageSize)
                 .get();
         log.debug("response==>{}", response.toString());
 
-        return response.getHits();
+        return response;
+    }
+
+    /**
+     * 分页查询，大于1万的数据
+     *
+     * @param scrollId 卷id
+     * @return
+     */
+    public SearchResponse queryScroll(String scrollId) {
+        SearchResponse response = esUtil.getClient().prepareSearchScroll(scrollId)
+                .setScroll(TimeValue.timeValueMinutes(4))
+                .get();
+        log.debug("response==>{}", response.toString());
+
+        return response;
+    }
+
+    /**
+     * 运算查询
+     *
+     * @param index 数据库
+     * @param type  表
+     * @param qb    查询对象
+     * @param aggs  多个运算条件
+     * @return
+     */
+    public SearchResponse queryAggregation(String index, String type, QueryBuilder qb, AggregationBuilder... aggs) {
+        // 校验
+        esUtil.validParam(index, type);
+
+        SearchRequestBuilder request = esUtil.getClient().prepareSearch(index)
+                .setTypes(type)
+                .setQuery(qb)
+                .setSize(3);
+        for (AggregationBuilder agg : aggs) {
+            request.addAggregation(agg);
+        }
+
+        SearchResponse response = request.get();
+        log.debug("response==>{}", response.toString());
+
+        return response;
     }
 
 }
