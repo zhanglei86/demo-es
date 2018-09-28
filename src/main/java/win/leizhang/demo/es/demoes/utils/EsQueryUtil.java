@@ -26,27 +26,32 @@ public class EsQueryUtil {
     /**
      * 分页查询
      *
-     * @param index     数据库
-     * @param type      表
-     * @param qb        查询对象
-     * @param pageStart 从第几页开始
-     * @param pageSize  每页数量
+     * @param index         数据库
+     * @param type          表
+     * @param qb            查询对象
+     * @param supportScroll 支持滚动分页吗
+     * @param pageStart     从第几页开始
+     * @param pageSize      每页数量
      * @return
      */
-    public SearchResponse query(String index, String type, QueryBuilder qb, int pageStart, int pageSize) {
+    public SearchResponse query(String index, String type, QueryBuilder qb, boolean supportScroll, int pageStart, int pageSize) {
         // 校验
         esUtil.validParam(index, type);
         // 不能大于1万
-        pageSize = (pageSize > 10000) ? 10 : pageSize;
+        pageSize = (pageSize > 10000) ? 10000 : pageSize;
 
-        SearchResponse response = esUtil.getClient().prepareSearch(index)
+        // 请求
+        SearchRequestBuilder request = esUtil.getClient().prepareSearch(index)
                 .setTypes(type)
                 .setQuery(qb)
                 .addSort("createdTime", SortOrder.DESC)
                 .setFrom(pageStart)
-                .setScroll(TimeValue.timeValueMinutes(2))
-                .setSize(pageSize)
-                .get();
+                .setSize(pageSize);
+        if (supportScroll) {
+            request.setScroll(TimeValue.timeValueMinutes(2));
+        }
+
+        SearchResponse response = request.get();
         log.debug("response==>{}", response.toString());
 
         return response;
