@@ -1,4 +1,4 @@
-package win.leizhang.demo.es.demoes.utils;
+package win.leizhang.demo.es.demoes.test;
 
 
 import com.alibaba.fastjson.JSONException;

@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import org.elasticsearch.action.bulk.BulkRequestBuilder;
 import org.elasticsearch.action.bulk.BulkResponse;
 import org.elasticsearch.action.delete.DeleteRequestBuilder;
+import org.elasticsearch.action.delete.DeleteResponse;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.action.search.SearchType;
@@ -11,6 +12,7 @@ import org.elasticsearch.action.support.WriteRequest;
 import org.elasticsearch.action.update.UpdateRequest;
 import org.elasticsearch.action.update.UpdateResponse;
 import org.elasticsearch.common.unit.TimeValue;
+import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.slf4j.Logger;
@@ -79,6 +81,39 @@ public class EsOperateUtil {
         }
 
         log.debug("saveBatch, result==>{}", bulkResponse.toString());
+    }
+
+    /**
+     * 删除单个
+     *
+     * @param index 数据库
+     * @param type  表
+     * @param id    主键
+     */
+    public void deleteOne(String index, String type, String id) {
+        // 校验
+        esUtil.validParam(index, type);
+        DeleteResponse response = esUtil.getClient().prepareDelete(index, type, id).get();
+        log.debug("deleteOne, result==>{}", response.toString());
+    }
+
+    /**
+     * 条件删除
+     *
+     * @param index 数据库
+     * @param type  表
+     * @param qb    查询对象
+     */
+    public void deleteByQuery(String index, String type, QueryBuilder qb) {
+        // 校验
+        esUtil.validParam(index, type);
+
+        DeleteRequestBuilder request = esUtil.getClient().prepareDelete()
+                .setIndex(index)
+                .setType(type);
+        // FIXME 未实现
+        DeleteResponse response = request.get();
+        log.debug("deleteOne, result==>{}", response.toString());
     }
 
     /**

@@ -24,6 +24,27 @@ public class EsQueryUtil {
     private EsInitUtil esUtil;
 
     /**
+     * 基本查询
+     *
+     * @param index 数据库
+     * @param type  表
+     * @param qb    查询对象
+     * @return
+     */
+    public SearchResponse query(String index, String type, QueryBuilder qb) {
+        // 校验
+        esUtil.validParam(index, type);
+        // 请求
+        SearchRequestBuilder request = esUtil.getClient().prepareSearch(index)
+                .setTypes(type)
+                .setQuery(qb);
+
+        SearchResponse response = request.get();
+        log.debug("response==>{}", response.toString());
+        return response;
+    }
+
+    /**
      * 分页查询
      *
      * @param index         数据库
