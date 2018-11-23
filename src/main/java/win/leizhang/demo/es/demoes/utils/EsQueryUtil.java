@@ -1,5 +1,7 @@
 package win.leizhang.demo.es.demoes.utils;
 
+import org.elasticsearch.action.get.GetRequestBuilder;
+import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.common.unit.TimeValue;
@@ -10,6 +12,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.Objects;
 
 /**
  * es查询工具类
@@ -22,6 +26,23 @@ public class EsQueryUtil {
 
     @Autowired
     private EsInitUtil esUtil;
+
+    /**
+     * 基本查询，id查
+     *
+     * @param index 数据库
+     * @param type  表
+     * @param id    主键
+     * @return
+     */
+    public GetResponse query(String index, String type, String id) {
+        // 校验
+        esUtil.validParam(index, type);
+        Objects.requireNonNull(id, "入参esId不能为空");
+
+        GetRequestBuilder request = esUtil.getClient().prepareGet(index, type, id);
+        return request.get();
+    }
 
     /**
      * 基本查询

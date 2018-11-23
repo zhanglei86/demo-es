@@ -13,6 +13,7 @@ import org.elasticsearch.search.sort.SortOrder;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import win.leizhang.demo.es.demoes.utils.EsInitUtil;
+import win.leizhang.demo.es.demoes.utils.EsQueryUtil;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -25,6 +26,8 @@ public class ElasticSearchTest extends BaseTestCase {
 
     @Autowired
     private EsInitUtil esUtil;
+    @Autowired
+    private EsQueryUtil esQueryUtil;
 
     @Test
     public void save() throws Exception {
@@ -42,9 +45,7 @@ public class ElasticSearchTest extends BaseTestCase {
 
     @Test
     public void get() throws Exception {
-        GetResponse response = esUtil.getClient()
-                .prepareGet("test", "city", "AWXM2Uj4smmPiprTO6O5")
-                .get();
+        GetResponse response = esQueryUtil.query("test", "city", "AWXM2Uj4smmPiprTO6O5");
         log.info("response==>{}", response.toString());
     }
 

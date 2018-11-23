@@ -22,6 +22,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -174,7 +175,8 @@ public class EsOperateUtil {
      */
     public void update(String index, String type, String pk, Object obj) throws InterruptedException, ExecutionException {
         // 校验
-        esUtil.validParam(index, type, pk);
+        esUtil.validParam(index, type);
+        Objects.requireNonNull(pk, "入参primaryKey不能为空");
 
         // 对象
         Map<String, Object> map = JSON.parseObject(JSON.toJSONString(obj));

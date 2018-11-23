@@ -115,16 +115,7 @@ public class EsInitUtil {
      *
      * @param index 数据库
      * @param type  表
-     * @param pk    主键
      */
-    void validParam(String index, String type, String pk) {
-        validParam(index, type);
-        if (StringUtils.isBlank(pk)) {
-            throw new InternalError("入参primaryKey不能为空 ");
-        }
-    }
-
-    // 参数校验2
     void validParam(String index, String type) {
         if (StringUtils.isBlank(index)) {
             throw new InternalError("入参index不能为空 ");
